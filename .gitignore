@@ -1,2 +1,4 @@
 .idea
 /docker/db/*
+/src/var/report/*
+/src/var/cache/*
