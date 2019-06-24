@@ -10,5 +10,3 @@ docker exec -it cinema_php_1 composer update
 sudo chmod 755 -R src/
 sudo chmod 577 -R src/app/etc/
 sudo chmod 577 -R src/media/
-
-
