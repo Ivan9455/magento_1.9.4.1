@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<config>
+    <modules>
+        <CodeDrop_CallRequest>
+            <active>true</active>
+            <codePool>local</codePool>
+        </CodeDrop_CallRequest>
+    </modules>
+</config>

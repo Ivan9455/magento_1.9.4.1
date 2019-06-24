@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<config>
+    <modules>
+        <CodeDrop_CallRequest>
+            <version>1.0.0</version>
+        </CodeDrop_CallRequest>
+    </modules>
+    <global>
+        <models>
+            <callrequest>
+                <class>CodeDrop_CallRequest_Model</class>
+                <resourseModel>call_request_resource</resourseModel>
+            </callrequest>
+            <callrequest_resource>
+                <class>CodeDrop_CallRequest_Resource</class>
+                <entities>
+                    <block>
+                        <table>codedrop_call_request</table>
+                    </block>
+                </entities>
+            </callrequest_resource>
+        </models>
+        <resources>
+            <callrequest_setup>
+                <setup>
+                    <module>CodeDrop_CallRequest</module>
+                </setup>
+            </callrequest_setup>
+        </resources>
+    </global>
+    <frontend>
+        <routers>
+            <callrequest>
+                <use>standart</use>
+                <args>
+                    <module>CodeDrop_CallRequest</module>
+                    <frontName>callrequest</frontName>
+                </args>
+            </callrequest>
+        </routers>
+    </frontend>
+    <admin>
+
+    </admin>
+    <default>
+
+    </default>
+</config>
