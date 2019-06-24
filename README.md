@@ -1,6 +1,5 @@
 docker-compose up --build -d
 
-
 docker-compose stop
 sudo rm -r docker/db/
 docker rm $(docker ps -a -f status=exited -q)
