@@ -19,3 +19,7 @@ RUN apt-get update && \
     sed -i 's/# ru_RU.UTF-8 UTF-8/ru_RU.UTF-8 UTF-8/' /etc/locale.gen && \
     sed -i 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     locale-gen
+RUN apt-get update && apt-get install -y wget git unzip \
+                   && pecl install xdebug-2.6.1 \
+                   && docker-php-ext-enable xdebug
+

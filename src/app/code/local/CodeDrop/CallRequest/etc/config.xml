@@ -2,47 +2,67 @@
 <config>
     <modules>
         <CodeDrop_CallRequest>
-            <version>1.0.0</version>
+            <version>1.0.2</version>
         </CodeDrop_CallRequest>
     </modules>
     <global>
         <models>
-            <callrequest>
+            <codedrop_callrequest>
                 <class>CodeDrop_CallRequest_Model</class>
-                <resourseModel>call_request_resource</resourseModel>
-            </callrequest>
-            <callrequest_resource>
+                <resourceModel>codedrop_callrequest_resource</resourceModel>
+            </codedrop_callrequest>
+            <codedrop_callrequest_resource>
                 <class>CodeDrop_CallRequest_Resource</class>
                 <entities>
-                    <block>
-                        <table>codedrop_call_request</table>
-                    </block>
+                    <phone>
+                        <table>call_request</table>
+                    </phone>
                 </entities>
-            </callrequest_resource>
+            </codedrop_callrequest_resource>
         </models>
         <resources>
-            <callrequest_setup>
+            <codedrop_callrequest_setup>
                 <setup>
                     <module>CodeDrop_CallRequest</module>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
                 </setup>
-            </callrequest_setup>
+            </codedrop_callrequest_setup>
         </resources>
+        <helpers>
+            <callrequest>
+                <class>CodeDrop_CallRequest_Helper</class>
+            </callrequest>
+        </helpers>
     </global>
     <frontend>
         <routers>
-            <callrequest>
-                <use>standart</use>
+            <codedrop_callrequest>
+                <use>standard</use>
                 <args>
                     <module>CodeDrop_CallRequest</module>
-                    <frontName>callrequest</frontName>
+                    <frontName>call-request</frontName>
                 </args>
-            </callrequest>
+            </codedrop_callrequest>
         </routers>
+        <codedrop_callrequest>
+            <modules>
+                <codedrop_callrequest>
+                    <files>
+                        <default>CodeDrop_CallRequest.csv</default>
+                    </files>
+                </codedrop_callrequest>
+            </modules>
+        </codedrop_callrequest>
     </frontend>
     <admin>
-
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <siteblocks after="Mage_Adminhtml">CodeDrop_CallRequest_Adminhtml</siteblocks>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
     </admin>
-    <default>
-
-    </default>
 </config>
