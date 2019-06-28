@@ -1,1 +1,10 @@
-test my template
+<?php
+$result = $this->getBlocks();
+?>
+<?php if (isset($result)): ?>
+    <?php foreach ($result as $block): ?>
+        <div class="callrequest">
+            <div class="block-title">id: <?= $block->getId() ?> name <?= $block->getPhoneNumber() ?></div>
+        </div>
+    <?php endforeach; ?>
+<?php endif; ?>

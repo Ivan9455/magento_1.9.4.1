@@ -17,7 +17,7 @@
                 <resourceModel>codedrop_callrequest_resource</resourceModel>
             </codedrop_callrequest>
             <codedrop_callrequest_resource>
-                <class>CodeDrop_CallRequest_Resource</class>
+                <class>CodeDrop_CallRequest_Model_Resource</class>
                 <entities>
                     <phone>
                         <table>call_request</table>
