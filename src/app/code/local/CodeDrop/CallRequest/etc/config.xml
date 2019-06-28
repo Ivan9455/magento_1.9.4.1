@@ -6,6 +6,11 @@
         </CodeDrop_CallRequest>
     </modules>
     <global>
+        <blocks>
+            <callrequest>
+                <class>CodeDrop_CallRequest_Block</class>
+            </callrequest>
+        </blocks>
         <models>
             <codedrop_callrequest>
                 <class>CodeDrop_CallRequest_Model</class>
@@ -35,24 +40,22 @@
         </helpers>
     </global>
     <frontend>
+        <layout>
+            <updates>
+                <callrequest module="callrequest">
+                    <file>callrequest.xml</file>
+                </callrequest>
+            </updates>
+        </layout>
         <routers>
-            <codedrop_callrequest>
+            <callrequest>
                 <use>standard</use>
                 <args>
                     <module>CodeDrop_CallRequest</module>
-                    <frontName>call-request</frontName>
+                    <frontName>callrequest</frontName>
                 </args>
-            </codedrop_callrequest>
+            </callrequest>
         </routers>
-        <codedrop_callrequest>
-            <modules>
-                <codedrop_callrequest>
-                    <files>
-                        <default>CodeDrop_CallRequest.csv</default>
-                    </files>
-                </codedrop_callrequest>
-            </modules>
-        </codedrop_callrequest>
     </frontend>
     <admin>
         <routers>
@@ -65,4 +68,11 @@
             </adminhtml>
         </routers>
     </admin>
+    <default>
+        <callrequest>
+            <settings>
+                <enabled>1</enabled>
+            </settings>
+        </callrequest>
+    </default>
 </config>
