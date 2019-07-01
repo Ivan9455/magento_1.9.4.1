@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <layout version="1.0.0">
-    <callrequest_index_index>
-        <reference name="content">
-            <block type="callrequest/list" name="callrequest.list" template="callrequest/list.phtml"/>
+    <default>
+        <reference name="top.menu">
+            <block type="callrequest/list"  name="callrequest.list" as="callrequest" template="callrequest/list.phtml"/>
         </reference>
-    </callrequest_index_index>
+    </default>
 </layout>
