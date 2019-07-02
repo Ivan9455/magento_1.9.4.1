@@ -32,7 +32,10 @@ class CodeDrop_CallRequest_Adminhtml_CallRequestController extends Mage_Adminhtm
         try {
             $id = $this->getRequest()->getParam('id');
             $block = Mage::getModel('codedrop_callrequest/phone')->load($id);
-            $block->setData($this->getRequest()->getParams())->save();
+            $block
+                ->setData($this->getRequest()->getParams())
+                ->setCreatedAt(Mage::app()->getLocale()->date())
+                ->save();
             if (!$block->getId()) {
                 Mage::getSingleton('adminhtml/session')->addError('Cannot save the phone');
             }
@@ -47,4 +50,17 @@ class CodeDrop_CallRequest_Adminhtml_CallRequestController extends Mage_Adminhtm
         $this->_redirect('*/*/' . $this->getRequest()->getParam('back', 'index'));
     }
 
+    public function deleteAction()
+    {
+        $block = Mage::getModel('codedrop_callrequest/phone')
+            ->setId($this->getRequest()->getParam('id'))
+            ->delete();
+        if ($block->getId()) {
+            Mage::getSingleton('adminhtml/session')->addSuccess('Phone was deleted successfully!');
+        } else {
+            Mage::getSingleton('adminhtml/session')->addError('Phone was deleted error!');
+        }
+
+        $this->_redirect('*/*/');
+    }
 }
