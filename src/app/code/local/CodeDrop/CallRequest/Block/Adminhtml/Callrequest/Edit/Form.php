@@ -66,7 +66,8 @@ class CodeDrop_CallRequest_Block_Adminhtml_Callrequest_Edit_Form extends Mage_Ad
             'after_element_html' => '<small>Comments</small>',
             'tabindex' => 1,
             'image' => $this->getSkinUrl('images/grid-cal.gif'),
-            'format' => 'yyyy-MM-dd'
+            'format' => 'yyyy-MM-dd',
+            'required' => true,
         ]);
 
         $form->setValues($model->getData());

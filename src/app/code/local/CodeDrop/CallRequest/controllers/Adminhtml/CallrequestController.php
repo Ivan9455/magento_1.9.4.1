@@ -32,7 +32,7 @@ class CodeDrop_CallRequest_Adminhtml_CallRequestController extends Mage_Adminhtm
         try {
             $id = $this->getRequest()->getParam('id');
             $block = Mage::getModel('codedrop_callrequest/phone')->load($id);
-            $block->setStatus($this->getRequest()->getParam('status'))->save();
+            $block->setData($this->getRequest()->getParams())->save();
             if (!$block->getId()) {
                 Mage::getSingleton('adminhtml/session')->addError('Cannot save the phone');
             }
