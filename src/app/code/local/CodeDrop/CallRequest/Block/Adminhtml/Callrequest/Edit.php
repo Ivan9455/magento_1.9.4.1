@@ -13,9 +13,9 @@ class CodeDrop_CallRequest_Block_Adminhtml_Callrequest_Edit extends Mage_Adminht
         $this->_updateButton('delete', 'label', Mage::helper('codedrop_callrequest')->__('Delete Block'));
 
         $this->_addButton('saveandcontinue', array(
-            'label'     => Mage::helper('adminhtml')->__('Save and Continue Edit'),
-            'onclick'   => 'saveAndContinueEdit()',
-            'class'     => 'save',
+            'label' => Mage::helper('adminhtml')->__('Save and Continue Edit'),
+            'onclick' => 'saveAndContinueEdit()',
+            'class' => 'save',
         ), -100);
 
         $this->_formScripts[] = "
@@ -33,9 +33,9 @@ class CodeDrop_CallRequest_Block_Adminhtml_Callrequest_Edit extends Mage_Adminht
     public function getHeaderText()
     {
         if (Mage::registry('codedrop_callrequest_phone')->getId()) {
-            return Mage::helper('codedrop_callrequest')->__("Edit Block '%s'", $this->escapeHtml(Mage::registry('codedrop_callrequest_phone')->getTitle()));
-        }
-        else {
+            return Mage::helper('codedrop_callrequest')->__("Edit Block '%s'",
+                $this->escapeHtml(Mage::registry('codedrop_callrequest_phone')->getTitle()));
+        } else {
             return Mage::helper('codedrop_callrequest')->__('New Block');
         }
     }

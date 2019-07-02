@@ -16,30 +16,31 @@ class CodeDrop_CallRequest_Block_Adminhtml_Callrequest_Grid extends Mage_Adminht
         $collection = Mage::getModel('codedrop_callrequest/phone')->getCollection();
         /* @var $collection Mage_Cms_Model_Mysql4_Block_Collection */
         $this->setCollection($collection);
+
         return parent::_prepareCollection();
     }
 
     protected function _prepareColumns()
     {
-        $this->addColumn('name', array(
-            'header'    => Mage::helper('codedrop_callrequest')->__('Name'),
-            'align'     => 'left',
-            'index'     => 'name',
-        ));
+        $this->addColumn('name', [
+            'header' => Mage::helper('codedrop_callrequest')->__('Name'),
+            'align' => 'left',
+            'index' => 'name',
+        ]);
 
-        $this->addColumn('status', array(
-            'header'    => Mage::helper('codedrop_callrequest')->__('Status'),
-            'align'     => 'left',
-            'index'     => 'status',
-            'type'      => 'options',
-            'options'   => Mage::getModel('codedrop_callrequest/source_status')->toArray()
-        ));
+        $this->addColumn('status', [
+            'header' => Mage::helper('codedrop_callrequest')->__('Status'),
+            'align' => 'left',
+            'index' => 'status',
+            'type' => 'options',
+            'options' => Mage::getModel('codedrop_callrequest/source_status')->toArray()
+        ]);
 
-        $this->addColumn('created_at', array(
-            'header'    => Mage::helper('codedrop_callrequest')->__('Created at'),
-            'index'     => 'created_at',
-            'type'      => 'date',
-        ));
+        $this->addColumn('created_at', [
+            'header' => Mage::helper('codedrop_callrequest')->__('Created at'),
+            'index' => 'created_at',
+            'type' => 'date',
+        ]);
 
         return parent::_prepareColumns();
     }

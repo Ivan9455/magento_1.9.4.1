@@ -17,14 +17,19 @@ class CodeDrop_CallRequest_Block_Adminhtml_Callrequest_Edit_Form extends Mage_Ad
     {
         $model = Mage::registry('codedrop_callrequest_phone');
 
-        $form = new Varien_Data_Form(
-            array('id' => 'edit_form', 'action' => $this->getData('action'), 'method' => 'post')
-        );
+        $form = new Varien_Data_Form([
+            'id' => 'edit_form',
+            'action' => $this->getUrl('*/*/save', ['id' => $this->getRequest()->getParam('id')]),
+            'method' => 'post'
+        ]);
 
         $form->setHtmlIdPrefix('phone_');
 
         $fieldset = $form->addFieldset('base_fieldset',
-            array('legend' => Mage::helper('cms')->__('General Information'), 'class' => 'fieldset-wide'));
+            array(
+                'legend' => Mage::helper('codedrop_callrequest')->__('General Information'),
+                'class' => 'fieldset-wide'
+            ));
 
         if ($model->getBlockId()) {
             $fieldset->addField('id', 'hidden', array(
@@ -32,47 +37,13 @@ class CodeDrop_CallRequest_Block_Adminhtml_Callrequest_Edit_Form extends Mage_Ad
             ));
         }
 
-        //        $fieldset->addField('title', 'text', array(
-        //            'name' => 'title',
-        //            'label' => Mage::helper('codedrop_callrequest')->__('Block Title'),
-        //            'title' => Mage::helper('codedrop_callrequest')->__('Block Title'),
-        //            'required' => true,
-        //        ));
-        //
-        //        $fieldset->addField('identifier', 'text', array(
-        //            'name' => 'identifier',
-        //            'label' => Mage::helper('codedrop_callrequest')->__('Identifier'),
-        //            'title' => Mage::helper('codedrop_callrequest')->__('Identifier'),
-        //            'required' => true,
-        //            'class' => 'validate-xml-identifier',
-        //        ));
-
-        /**
-         * Check is single store mode
-         */
-        if (!Mage::app()->isSingleStoreMode()) {
-            $field = $fieldset->addField('store_id', 'multiselect', array(
-                'name' => 'stores[]',
-                'label' => Mage::helper('cms')->__('Store View'),
-                'title' => Mage::helper('cms')->__('Store View'),
-                'required' => true,
-                'values' => Mage::getSingleton('adminhtml/system_store')->getStoreValuesForForm(false, true),
-            ));
-            $renderer = $this->getLayout()->createBlock('adminhtml/store_switcher_form_renderer_fieldset_element');
-            $field->setRenderer($renderer);
-        } else {
-            $fieldset->addField('store_id', 'hidden', array(
-                'name' => 'stores[]',
-                'value' => Mage::app()->getStore(true)->getId()
-            ));
-            $model->setStoreId(Mage::app()->getStore(true)->getId());
-        }
-
         $fieldset->addField('name', 'text', array(
             'name' => 'name',
             'label' => Mage::helper('codedrop_callrequest')->__('Name'),
             'title' => Mage::helper('codedrop_callrequest')->__('Name'),
             'required' => true,
+            'disabled' => true,
+            'readonly' => true,
         ));
 
         $fieldset->addField('status', 'select', array(
@@ -83,11 +54,13 @@ class CodeDrop_CallRequest_Block_Adminhtml_Callrequest_Edit_Form extends Mage_Ad
             'options' => Mage::getModel('codedrop_callrequest/source_status')->toArray()
         ));
 
-        $fieldset->addField('phone_number', 'text', array(
+        $fieldset->addField('phone_number', 'textarea', array(
             'name' => 'phone_number',
             'label' => Mage::helper('codedrop_callrequest')->__('Phone number'),
             'title' => Mage::helper('codedrop_callrequest')->__('Phone number'),
             'required' => true,
+            'disabled' => true,
+            'readonly' => true,
         ));
 
         $fieldset->addField('description', 'text', array(
@@ -95,6 +68,8 @@ class CodeDrop_CallRequest_Block_Adminhtml_Callrequest_Edit_Form extends Mage_Ad
             'label' => Mage::helper('codedrop_callrequest')->__('Description'),
             'title' => Mage::helper('codedrop_callrequest')->__('Description'),
             'required' => true,
+            'disabled' => true,
+            'readonly' => true,
         ));
 
         $fieldset->addField('call_date', 'text', array(
@@ -102,6 +77,8 @@ class CodeDrop_CallRequest_Block_Adminhtml_Callrequest_Edit_Form extends Mage_Ad
             'label' => Mage::helper('codedrop_callrequest')->__('Call date'),
             'title' => Mage::helper('codedrop_callrequest')->__('Call date'),
             'required' => true,
+            'disabled' => true,
+            'readonly' => true,
         ));
 
         $form->setValues($model->getData());
