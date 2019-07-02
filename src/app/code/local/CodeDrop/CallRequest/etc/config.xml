@@ -7,9 +7,9 @@
     </modules>
     <global>
         <blocks>
-            <callrequest>
+            <codedrop_callrequest>
                 <class>CodeDrop_CallRequest_Block</class>
-            </callrequest>
+            </codedrop_callrequest>
         </blocks>
         <models>
             <codedrop_callrequest>
@@ -34,27 +34,27 @@
             </codedrop_callrequest_setup>
         </resources>
         <helpers>
-            <callrequest>
+            <codedrop_callrequest>
                 <class>CodeDrop_CallRequest_Helper</class>
-            </callrequest>
+            </codedrop_callrequest>
         </helpers>
     </global>
     <frontend>
         <layout>
             <updates>
-                <callrequest module="callrequest">
+                <codedrop_callrequest module="codedrop_callrequest">
                     <file>callrequest.xml</file>
-                </callrequest>
+                </codedrop_callrequest>
             </updates>
         </layout>
         <routers>
-            <callrequest>
+            <codedrop_callrequest>
                 <use>standard</use>
                 <args>
                     <module>CodeDrop_CallRequest</module>
-                    <frontName>callrequest</frontName>
+                    <frontName>codedrop_callrequest</frontName>
                 </args>
-            </callrequest>
+            </codedrop_callrequest>
         </routers>
     </frontend>
     <admin>
@@ -62,17 +62,17 @@
             <adminhtml>
                 <args>
                     <modules>
-                        <siteblocks after="Mage_Adminhtml">CodeDrop_CallRequest_Adminhtml</siteblocks>
+                        <codedrop_callrequest after="Mage_Adminhtml">CodeDrop_CallRequest_Adminhtml</codedrop_callrequest>
                     </modules>
                 </args>
             </adminhtml>
         </routers>
     </admin>
     <default>
-        <callrequest>
+        <codedrop_callrequest>
             <settings>
                 <enabled>1</enabled>
             </settings>
-        </callrequest>
+        </codedrop_callrequest>
     </default>
 </config>

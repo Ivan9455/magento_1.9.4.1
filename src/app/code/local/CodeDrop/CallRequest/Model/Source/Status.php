@@ -3,7 +3,7 @@
 class CodeDrop_CallRequest_Model_Source_Status
 {
     public const ENABLED = '1';
-    public const DISABLED = '0';
+    public const DISABLED = '2';
 
     /**
      * Options getter
@@ -13,8 +13,8 @@ class CodeDrop_CallRequest_Model_Source_Status
     public function toOptionArray()
     {
         return [
-            array('value' => self::ENABLED, 'label' => Mage::helper('callreuqst')->__('Enabled')),
-            array('value' => self::DISABLED, 'label' => Mage::helper('callreuqst')->__('Disabled')),
+            ['value' => self::ENABLED, 'label' => Mage::helper('codedrop_callrequest')->__('Enabled')],
+            ['value' => self::DISABLED, 'label' => Mage::helper('codedrop_callrequest')->__('Disabled')],
         ];
     }
 
@@ -26,8 +26,8 @@ class CodeDrop_CallRequest_Model_Source_Status
     public function toArray()
     {
         return [
-            self::DISABLED => Mage::helper('callreuqst')->__('Disabled'),
-            self::ENABLED => Mage::helper('callreuqst')->__('Enabled'),
+            self::DISABLED => Mage::helper('codedrop_callrequest')->__('Disabled'),
+            self::ENABLED => Mage::helper('codedrop_callrequest')->__('Enabled'),
         ];
     }
 

@@ -3,3 +3,4 @@
 /src/var/report/*
 /src/var/cache/*
 /src/app/code/local/CodeDrop/IGN_Siteblocks/
+/src/test.php

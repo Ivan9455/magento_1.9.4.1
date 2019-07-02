@@ -1,13 +1,8 @@
 <?xml version="1.0"?>
 <layout version="1.0.0">
     <default>
-        <block type="callrequest/html_head" name="head" as="head">
-            <action method="addCss">
-                <stylesheet>css/callrequest/header.css</stylesheet>
-            </action>
-        </block>
         <reference name="top.menu">
-            <block type="callrequest/list" name="callrequest.list" as="callrequest" template="callrequest/list.phtml"/>
+            <block type="codedrop_callrequest/list" name="codedrop_callrequest.list" as="codedrop_callrequest" template="callrequest/list.phtml"/>
         </reference>
     </default>
 </layout>
