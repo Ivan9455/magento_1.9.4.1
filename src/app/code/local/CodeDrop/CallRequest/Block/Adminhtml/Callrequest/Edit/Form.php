@@ -1,38 +1,6 @@
 <?php
-/**
- * Magento
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Open Software License (OSL 3.0)
- * that is bundled with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://opensource.org/licenses/osl-3.0.php
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@magento.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade Magento to newer
- * versions in the future. If you wish to customize Magento for your
- * needs please refer to http://www.magento.com for more information.
- *
- * @category    Mage
- * @package     Mage_Adminhtml
- * @copyright  Copyright (c) 2006-2019 Magento, Inc. (http://www.magento.com)
- * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- */
 
-
-/**
- * Adminhtml cms block edit form
- *
- * @category   Mage
- * @package    Mage_Adminhtml
- * @author      Magento Core Team <core@magentocommerce.com>
- */
-class Mage_Adminhtml_Block_Cms_Block_Edit_Form extends Mage_Adminhtml_Block_Widget_Form
+class CodeDrop_CallRequest_Block_Adminhtml_Callrequest_Edit_Form extends Mage_Adminhtml_Block_Widget_Form
 {
 
     /**
@@ -41,97 +9,99 @@ class Mage_Adminhtml_Block_Cms_Block_Edit_Form extends Mage_Adminhtml_Block_Widg
     public function __construct()
     {
         parent::__construct();
-        $this->setId('block_form');
-        $this->setTitle(Mage::helper('cms')->__('Block Information'));
-    }
-
-    /**
-     * Load Wysiwyg on demand and Prepare layout
-     */
-    protected function _prepareLayout()
-    {
-        parent::_prepareLayout();
-        if (Mage::getSingleton('cms/wysiwyg_config')->isEnabled()) {
-            $this->getLayout()->getBlock('head')->setCanLoadTinyMce(true);
-        }
+        $this->setId('phone_form');
+        $this->setTitle(Mage::helper('codedrop_callrequest')->__('Phone Information'));
     }
 
     protected function _prepareForm()
     {
-        $model = Mage::registry('cms_block');
+        $model = Mage::registry('codedrop_callrequest_phone');
 
         $form = new Varien_Data_Form(
             array('id' => 'edit_form', 'action' => $this->getData('action'), 'method' => 'post')
         );
 
-        $form->setHtmlIdPrefix('block_');
+        $form->setHtmlIdPrefix('phone_');
 
-        $fieldset = $form->addFieldset('base_fieldset', array('legend'=>Mage::helper('cms')->__('General Information'), 'class' => 'fieldset-wide'));
+        $fieldset = $form->addFieldset('base_fieldset',
+            array('legend' => Mage::helper('cms')->__('General Information'), 'class' => 'fieldset-wide'));
 
         if ($model->getBlockId()) {
-            $fieldset->addField('block_id', 'hidden', array(
-                'name' => 'block_id',
+            $fieldset->addField('id', 'hidden', array(
+                'name' => 'id',
             ));
         }
 
-        $fieldset->addField('title', 'text', array(
-            'name'      => 'title',
-            'label'     => Mage::helper('cms')->__('Block Title'),
-            'title'     => Mage::helper('cms')->__('Block Title'),
-            'required'  => true,
-        ));
-
-        $fieldset->addField('identifier', 'text', array(
-            'name'      => 'identifier',
-            'label'     => Mage::helper('cms')->__('Identifier'),
-            'title'     => Mage::helper('cms')->__('Identifier'),
-            'required'  => true,
-            'class'     => 'validate-xml-identifier',
-        ));
+        //        $fieldset->addField('title', 'text', array(
+        //            'name' => 'title',
+        //            'label' => Mage::helper('codedrop_callrequest')->__('Block Title'),
+        //            'title' => Mage::helper('codedrop_callrequest')->__('Block Title'),
+        //            'required' => true,
+        //        ));
+        //
+        //        $fieldset->addField('identifier', 'text', array(
+        //            'name' => 'identifier',
+        //            'label' => Mage::helper('codedrop_callrequest')->__('Identifier'),
+        //            'title' => Mage::helper('codedrop_callrequest')->__('Identifier'),
+        //            'required' => true,
+        //            'class' => 'validate-xml-identifier',
+        //        ));
 
         /**
          * Check is single store mode
          */
         if (!Mage::app()->isSingleStoreMode()) {
-            $field =$fieldset->addField('store_id', 'multiselect', array(
-                'name'      => 'stores[]',
-                'label'     => Mage::helper('cms')->__('Store View'),
-                'title'     => Mage::helper('cms')->__('Store View'),
-                'required'  => true,
-                'values'    => Mage::getSingleton('adminhtml/system_store')->getStoreValuesForForm(false, true),
+            $field = $fieldset->addField('store_id', 'multiselect', array(
+                'name' => 'stores[]',
+                'label' => Mage::helper('cms')->__('Store View'),
+                'title' => Mage::helper('cms')->__('Store View'),
+                'required' => true,
+                'values' => Mage::getSingleton('adminhtml/system_store')->getStoreValuesForForm(false, true),
             ));
             $renderer = $this->getLayout()->createBlock('adminhtml/store_switcher_form_renderer_fieldset_element');
             $field->setRenderer($renderer);
-        }
-        else {
+        } else {
             $fieldset->addField('store_id', 'hidden', array(
-                'name'      => 'stores[]',
-                'value'     => Mage::app()->getStore(true)->getId()
+                'name' => 'stores[]',
+                'value' => Mage::app()->getStore(true)->getId()
             ));
             $model->setStoreId(Mage::app()->getStore(true)->getId());
         }
 
-        $fieldset->addField('is_active', 'select', array(
-            'label'     => Mage::helper('cms')->__('Status'),
-            'title'     => Mage::helper('cms')->__('Status'),
-            'name'      => 'is_active',
-            'required'  => true,
-            'options'   => array(
-                '1' => Mage::helper('cms')->__('Enabled'),
-                '0' => Mage::helper('cms')->__('Disabled'),
-            ),
+        $fieldset->addField('name', 'text', array(
+            'name' => 'name',
+            'label' => Mage::helper('codedrop_callrequest')->__('Name'),
+            'title' => Mage::helper('codedrop_callrequest')->__('Name'),
+            'required' => true,
         ));
-        if (!$model->getId()) {
-            $model->setData('is_active', '1');
-        }
 
-        $fieldset->addField('content', 'editor', array(
-            'name'      => 'content',
-            'label'     => Mage::helper('cms')->__('Content'),
-            'title'     => Mage::helper('cms')->__('Content'),
-            'style'     => 'height:36em',
-            'required'  => true,
-            'config'    => Mage::getSingleton('cms/wysiwyg_config')->getConfig()
+        $fieldset->addField('status', 'select', array(
+            'name' => 'status',
+            'label' => Mage::helper('codedrop_callrequest')->__('Status'),
+            'title' => Mage::helper('codedrop_callrequest')->__('Status'),
+            'required' => true,
+            'options' => Mage::getModel('codedrop_callrequest/source_status')->toArray()
+        ));
+
+        $fieldset->addField('phone_number', 'text', array(
+            'name' => 'phone_number',
+            'label' => Mage::helper('codedrop_callrequest')->__('Phone number'),
+            'title' => Mage::helper('codedrop_callrequest')->__('Phone number'),
+            'required' => true,
+        ));
+
+        $fieldset->addField('description', 'text', array(
+            'name' => 'description',
+            'label' => Mage::helper('codedrop_callrequest')->__('Description'),
+            'title' => Mage::helper('codedrop_callrequest')->__('Description'),
+            'required' => true,
+        ));
+
+        $fieldset->addField('call_date', 'text', array(
+            'name' => 'call_date',
+            'label' => Mage::helper('codedrop_callrequest')->__('Call date'),
+            'title' => Mage::helper('codedrop_callrequest')->__('Call date'),
+            'required' => true,
         ));
 
         $form->setValues($model->getData());

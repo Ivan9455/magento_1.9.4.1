@@ -4,10 +4,22 @@ class CodeDrop_CallRequest_Adminhtml_CallRequestController extends Mage_Adminhtm
 {
     public function indexAction()
     {
-        //die('123');
         $this->loadLayout();
-        //var_dump($this->getLayout()->createBlock('codedrop_callrequest/adminhtml_callrequest'));die();
         $this->_addContent($this->getLayout()->createBlock('codedrop_callrequest/adminhtml_callrequest'));
+        $this->renderLayout();
+    }
+
+    public function newAction()
+    {
+        $this->_forward('edit');
+    }
+
+    public function editAction()
+    {
+        $id = $this->getRequest()->getParam('id');
+        Mage::register('codedrop_callrequest_phone', Mage::getModel('codedrop_callrequest/phone')->load($id));
+        $this->loadLayout();
+        $this->_addContent($this->getLayout()->createBlock('codedrop_callrequest/adminhtml_callrequest_edit'));
         $this->renderLayout();
     }
 }
