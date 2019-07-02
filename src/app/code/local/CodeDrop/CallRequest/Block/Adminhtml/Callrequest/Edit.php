@@ -12,11 +12,11 @@ class CodeDrop_CallRequest_Block_Adminhtml_Callrequest_Edit extends Mage_Adminht
         $this->_updateButton('save', 'label', Mage::helper('codedrop_callrequest')->__('Save Block'));
         $this->_updateButton('delete', 'label', Mage::helper('codedrop_callrequest')->__('Delete Block'));
 
-        $this->_addButton('saveandcontinue', array(
+        $this->_addButton('saveandcontinue', [
             'label' => Mage::helper('adminhtml')->__('Save and Continue Edit'),
             'onclick' => 'saveAndContinueEdit()',
             'class' => 'save',
-        ), -100);
+        ], -100);
 
         $this->_formScripts[] = "
             function saveAndContinueEdit(){

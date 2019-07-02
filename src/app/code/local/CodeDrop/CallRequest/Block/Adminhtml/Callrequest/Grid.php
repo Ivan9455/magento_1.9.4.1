@@ -39,7 +39,8 @@ class CodeDrop_CallRequest_Block_Adminhtml_Callrequest_Grid extends Mage_Adminht
         $this->addColumn('created_at', [
             'header' => Mage::helper('codedrop_callrequest')->__('Created at'),
             'index' => 'created_at',
-            'type' => 'date',
+            'type'=>'date',
+            'format' => 'yyyy-MM-dd'
         ]);
 
         return parent::_prepareColumns();
@@ -47,12 +48,13 @@ class CodeDrop_CallRequest_Block_Adminhtml_Callrequest_Grid extends Mage_Adminht
 
     /**
      * Row click url
+     * @param $row Mage_Catalog_Model_Product|Varien_Object
      *
      * @return string
      */
     public function getRowUrl($row)
     {
-        return $this->getUrl('*/*/edit', array('id' => $row->getId()));
+        return $this->getUrl('*/*/edit', ['id' => $row->getId()]);
     }
 
 }

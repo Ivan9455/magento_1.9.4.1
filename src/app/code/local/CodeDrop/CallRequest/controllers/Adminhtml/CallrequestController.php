@@ -9,6 +9,11 @@ class CodeDrop_CallRequest_Adminhtml_CallRequestController extends Mage_Adminhtm
         $this->renderLayout();
     }
 
+    public function newAction()
+    {
+        $this->_forward('edit');
+    }
+
     public function editAction()
     {
         $id = $this->getRequest()->getParam('id');
@@ -41,4 +46,5 @@ class CodeDrop_CallRequest_Adminhtml_CallRequestController extends Mage_Adminhtm
 
         $this->_redirect('*/*/' . $this->getRequest()->getParam('back', 'index'));
     }
+
 }
