@@ -50,11 +50,26 @@ class CodeDrop_CallRequest_Block_Adminhtml_Callrequest_Grid extends Mage_Adminht
     {
         $this->setMassactionIdField('id');
         $this->getMassactionBlock()->setIdFieldName('id');
-        $this->getMassactionBlock()->addItem('delete', [
-            'label' => Mage::helper('codedrop_callrequest')->__('Delete'),
-            'url' => $this->getUrl('*/*/massDelete'),
-            'confirm' => Mage::helper('codedrop_callrequest')->__('Are you sure?')
-        ]);
+        $this->getMassactionBlock()
+            ->addItem('delete', [
+                'label' => Mage::helper('codedrop_callrequest')->__('Delete'),
+                'url' => $this->getUrl('*/*/massDelete'),
+                'confirm' => Mage::helper('codedrop_callrequest')->__('Are you sure?')
+            ])
+            ->addItem('status', [
+                'label' => Mage::helper('codedrop_callrequest')->__('Update status'),
+                'url' => $this->getUrl('*/*/massStatus'),
+                'confirm' => Mage::helper('codedrop_callrequest')->__('Are you sure?'),
+                'additional' => [
+                    'block_status' => [
+                        'name' => 'block_status',
+                        'type' => 'select',
+                        'class' => 'required-entry',
+                        'label' => Mage::helper('codedrop_callrequest')->__('Status'),
+                        'options' => Mage::getModel('codedrop_callrequest/source_status')->toArray()
+                    ]
+                ]
+            ]);
 
         return $this;
     }

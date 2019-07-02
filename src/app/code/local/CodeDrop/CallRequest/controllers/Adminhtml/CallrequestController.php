@@ -63,4 +63,46 @@ class CodeDrop_CallRequest_Adminhtml_CallRequestController extends Mage_Adminhtm
 
         $this->_redirect('*/*/');
     }
+
+    public function massStatusAction()
+    {
+        $statuses = $this->getRequest()->getParams();
+        try {
+            $phones = Mage::getModel('codedrop_callrequest/phone')
+                ->getCollection()
+                ->addFieldToFilter('id', ['in' => $statuses['massaction']]);
+            foreach ($phones as $phone) {
+                $phone->setStatus($statuses['block_status'])->save();
+            }
+        } catch (Exception $e) {
+            Mage::logException($e);
+            Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+
+            return $this->_redirect('*/*/');
+        }
+        Mage::getSingleton('adminhtml/session')->addSuccess('Phone were updated!');
+
+        return $this->_redirect('*/*/');
+    }
+
+    public function massDeleteAction()
+    {
+        $blocks = $this->getRequest()->getParams();
+        try {
+            $phones = Mage::getModel('codedrop_callrequest/phone')
+                ->getCollection()
+                ->addFieldToFilter('id', ['in' => $blocks['massaction']]);
+            foreach ($phones as $phone) {
+                $phone->delete();
+            }
+        } catch (Exception $e) {
+            Mage::logException($e);
+            Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+
+            return $this->_redirect('*/*/');
+        }
+        Mage::getSingleton('adminhtml/session')->addSuccess('Phone were deleted!');
+
+        return $this->_redirect('*/*/');
+    }
 }
