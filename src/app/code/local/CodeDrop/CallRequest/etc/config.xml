@@ -63,7 +63,7 @@
                 <use>standard</use>
                 <args>
                     <module>CodeDrop_CallRequest</module>
-                    <frontName>codedrop_callrequest</frontName>
+                    <frontName>callrequest</frontName>
                 </args>
             </codedrop_callrequest>
         </routers>
@@ -73,7 +73,9 @@
             <adminhtml>
                 <args>
                     <modules>
-                        <codedrop_callrequest after="Mage_Adminhtml">CodeDrop_CallRequest_Adminhtml</codedrop_callrequest>
+                        <codedrop_callrequest after="Mage_Adminhtml">
+                            CodeDrop_CallRequest_Adminhtml
+                        </codedrop_callrequest>
                     </modules>
                 </args>
             </adminhtml>
@@ -86,4 +88,16 @@
             </settings>
         </codedrop_callrequest>
     </default>
+    <crontab>
+        <jobs>
+            <codedrop_callrequest_clear_cache>
+                <schedule>
+                    <cron_expr>*/1 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>codedrop_callrequest/cron::codedrop_callrequest_clear_cache</model>
+                </run>
+            </codedrop_callrequest_clear_cache>
+        </jobs>
+    </crontab>
 </config>

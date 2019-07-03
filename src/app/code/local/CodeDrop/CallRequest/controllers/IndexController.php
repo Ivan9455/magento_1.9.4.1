@@ -7,4 +7,10 @@ class CodeDrop_CallRequest_IndexController extends Mage_Core_Controller_Front_Ac
         $this->loadLayout();
         $this->renderLayout();
     }
+
+    public function click_buttonAction()
+    {
+        var_dump('12223');
+        die;
+    }
 }
