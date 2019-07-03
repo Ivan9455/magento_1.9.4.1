@@ -40,6 +40,17 @@
         </helpers>
     </global>
     <frontend>
+        <events>
+            <click_button>
+                <observers>
+                    <codedrop_callrequest>
+                        <class>codedrop_callrequest/observer</class>
+                        <method>click_button_after</method>
+                        <type>model</type>
+                    </codedrop_callrequest>
+                </observers>
+            </click_button>
+        </events>
         <layout>
             <updates>
                 <codedrop_callrequest module="codedrop_callrequest">
