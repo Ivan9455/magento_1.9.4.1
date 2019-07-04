@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resouces>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <callrequest translate="title" module="codedrop_callrequest">
+                                        <title>Callrequest</title>
+                                    </callrequest>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <cms>
+                        <children>
+                            <callrequest translate="title" module="codedrop_callrequest">
+                                <title>Call request</title>
+                                <action>adminhtml</action>
+                            </callrequest>
+                        </children>
+                    </cms>
+                </children>
+            </admin>
+        </resouces>
+    </acl>
+    <menu>
+        <cms>
+            <children>
+                <callrequest translate="title" module="codedrop_callrequest">
+                    <title>Call request</title>
+                    <action>adminhtml/callrequest</action>
+                    <sort_order>20</sort_order>
+                </callrequest>
+            </children>
+        </cms>
+    </menu>
+</config>

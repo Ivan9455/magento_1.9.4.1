@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<layout version="1.0.0">
+    <default>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/callrequest.css</stylesheet></action>
+            <action method="addItem"><type>skin_js</type><name>js/callrequest/page.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/callrequest/Callrequest.js</name></action>
+        </reference>
+
+        <reference name="top.menu">
+            <block type="codedrop_callrequest/list" name="codedrop_callrequest.list" as="codedrop_callrequest" template="callrequest/list.phtml"/>
+            <block type="codedrop_callrequest/list" name="codedrop_callrequest.form" as="codedrop_callrequest" template="callrequest/form.phtml"/>
+        </reference>
+    </default>
+</layout>
