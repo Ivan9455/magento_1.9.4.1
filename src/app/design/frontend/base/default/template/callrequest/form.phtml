@@ -1,20 +1,26 @@
 <div class="callrequest_form hidden">
     <div class="close_callrequest"></div>
     <form id="call_request">
-        <label for="name" class="display_block"><?= Mage::helper('codedrop_callrequest')->__('Name') ?></label>
+        <label for="name" class="display_block">
+            <?= Mage::helper('codedrop_callrequest')->__('Name') ?>
+        </label>
         <input type="text" name="name" id="name">
 
-        <label for="phone_number"
-               class="display_block"><?= Mage::helper('codedrop_callrequest')->__('Phone number') ?></label>
+        <label for="phone_number" class="display_block">
+            <?= Mage::helper('codedrop_callrequest')->__('Phone number') ?>
+        </label>
         <input type="number" name="phone_number" id="phone_number" placeholder="79001002020">
 
-        <label for="description"
-               class="display_block"><?= Mage::helper('codedrop_callrequest')->__('Description') ?></label>
+        <label for="description" class="display_block">
+            <?= Mage::helper('codedrop_callrequest')->__('Description') ?>
+        </label>
         <textarea name="description" id="description"></textarea>
 
-        <label for="call_date"
-               class="display_block"><?= Mage::helper('codedrop_callrequest')->__('Call date') ?></label>
-        <input type="datetime-local" class="display_block" name="call_date" id="call_date">
+        <label for="call_date" class="display_block">
+            <?= Mage::helper('codedrop_callrequest')->__('Call date') ?>
+        </label>
+        <input type="datetime-local" class="display_block" name="call_date" id="call_date"
+               min="<?= Mage::getModel('core/date')->date('Y-m-d\TH:i') ?>">
 
         <input type="button" class="button callrequest_save display_block"
                value="<?= Mage::helper('codedrop_callrequest')->__('Create') ?>">

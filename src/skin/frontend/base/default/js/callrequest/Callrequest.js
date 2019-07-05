@@ -18,5 +18,8 @@ let Callrequest = {
         $j('.callrequest_save').click(function () {
             Callrequest.save();
         });
+    },
+    validate:function () {
+          Validation.add
     }
 };

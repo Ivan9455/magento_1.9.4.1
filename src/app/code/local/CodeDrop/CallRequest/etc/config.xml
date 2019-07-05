@@ -72,6 +72,7 @@
         <codedrop_callrequest>
             <settings>
                 <enabled>1</enabled>
+                <js>1</js>
             </settings>
         </codedrop_callrequest>
     </default>

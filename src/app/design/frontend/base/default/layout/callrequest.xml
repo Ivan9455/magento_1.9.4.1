@@ -2,14 +2,31 @@
 <layout version="1.0.0">
     <default>
         <reference name="head">
-            <action method="addCss"><stylesheet>css/callrequest.css</stylesheet></action>
-            <action method="addItem"><type>skin_js</type><name>js/callrequest/page.js</name></action>
-            <action method="addItem"><type>skin_js</type><name>js/callrequest/Callrequest.js</name></action>
+            <action method="addCss">
+                <stylesheet>css/callrequest.css</stylesheet>
+            </action>
+            <action ifconfig="codedrop_callrequest/settings/js" method="addItem">
+                <type>skin_js</type>
+                <name>js/callrequest/page.js</name>
+            </action>
+            <action ifconfig="codedrop_callrequest/settings/js" method="addItem">
+                <type>skin_js</type>
+                <name>js/callrequest/Callrequest.js</name>
+            </action>
         </reference>
-
+        <block type="codedrop_callrequest/list" name="codedrop_callrequest.list" as="codedrop_callrequest"
+               template="callrequest/list.phtml"/>
+        <block type="codedrop_callrequest/list" name="codedrop_callrequest.form" as="codedrop_callrequest"
+               template="callrequest/form.phtml"/>
         <reference name="top.menu">
-            <block type="codedrop_callrequest/list" name="codedrop_callrequest.list" as="codedrop_callrequest" template="callrequest/list.phtml"/>
-            <block type="codedrop_callrequest/list" name="codedrop_callrequest.form" as="codedrop_callrequest" template="callrequest/form.phtml"/>
+            <action method="append" ifconfig="codedrop_callrequest/settings/enabled">
+                <block>codedrop_callrequest.list</block>
+            </action>
+        </reference>
+        <reference name="content">
+            <action method="append" ifconfig="codedrop_callrequest/settings/enabled">
+                <block>codedrop_callrequest.form</block>
+            </action>
         </reference>
     </default>
 </layout>
